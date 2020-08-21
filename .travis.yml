@@ -18,3 +18,7 @@ notifications:
       -volkovwladislav@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
+
+env:
+  global:
+    - CODECOV_TOKEN="77accaf0-4804-44f9-81c9-70ab8fe5da09"
