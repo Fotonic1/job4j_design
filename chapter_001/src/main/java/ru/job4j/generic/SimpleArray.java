@@ -23,7 +23,6 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public void remove(int index) {
         Objects.checkIndex(index, length);
-        data[index] = null;
         System.arraycopy(data, index + 1, data, index, length - index - 1);
         length--;
     }
