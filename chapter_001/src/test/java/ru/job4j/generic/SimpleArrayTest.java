@@ -27,7 +27,7 @@ public class SimpleArrayTest {
         array.add(9);
         array.add(10);
         array.remove(0);
-        assertThat(array.get(0), is(2));
+        assertThat(array.get(8), is(10));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
