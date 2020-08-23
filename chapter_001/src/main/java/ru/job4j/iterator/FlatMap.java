@@ -6,11 +6,20 @@ import java.util.List;
 
 public class FlatMap<T> implements Iterator<T> {
     private final Iterator<Iterator<T>> data;
-    private Iterator<T> cursor;
+    private Iterator<T> cursor = new Iterator<T>() {
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return null;
+        }
+    };
 
     public FlatMap(Iterator<Iterator<T>> data) {
         this.data = data;
-        this.cursor = data.next();
     }
 
     @Override
