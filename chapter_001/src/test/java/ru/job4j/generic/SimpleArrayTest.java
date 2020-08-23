@@ -18,6 +18,14 @@ public class SimpleArrayTest {
         SimpleArray<Integer> array = new SimpleArray<>(10);
         array.add(1);
         array.add(2);
+        array.add(3);
+        array.add(4);
+        array.add(5);
+        array.add(6);
+        array.add(7);
+        array.add(8);
+        array.add(9);
+        array.add(10);
         array.remove(0);
         assertThat(array.get(0), is(2));
     }
