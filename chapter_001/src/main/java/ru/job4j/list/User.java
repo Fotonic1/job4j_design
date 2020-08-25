@@ -19,7 +19,7 @@ public class User {
     public static void main(String[] args) {
         User first = new User("Vlad", 0, new GregorianCalendar(1992, 3, 7));
         User second = new User("Vlad", 0, new GregorianCalendar(1992, 3, 7));
-        Map<User, String> map = new HashMap<>();
+        Map<User, Object> map = new HashMap<>();
         map.put(first, "first");
         map.put(second, "second");
         System.out.println(map);
