@@ -22,7 +22,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 
     public void add(T model) {
         Node<T> l = last;
-        Node<T> newNode = new Node<>(first, model, null);
+        Node<T> newNode = new Node<>(last, model, null);
         size++;
         modCount++;
         last = newNode;
