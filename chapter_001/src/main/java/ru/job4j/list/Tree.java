@@ -28,25 +28,20 @@ public class Tree<E> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
-        while (!data.isEmpty()) {
-            Node<E> el = data.poll();
-            if (el.value.equals(parent)) {
-                boolean add = true;
-                for (var a:el.children) {
-                    if (a.value.equals(child)) {
-                        add = false;
-                        break;
-                    }
-                }
-                if (add) {
-                    el.children.add(new Node<>(child));
-                    rsl = true;
+        var par = findBy(parent);
+        if (par.isPresent()) {
+            var el = par.get();
+            var add = true;
+            for (var a:el.children) {
+                if (a.value.equals(child)) {
+                    add = false;
                     break;
                 }
             }
-            data.addAll(el.children);
+            if (add) {
+                el.children.add(new Node<>(child));
+                rsl = true;
+            }
         }
         return rsl;
     }
