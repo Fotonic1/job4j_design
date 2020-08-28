@@ -1,6 +1,5 @@
 package ru.job4j.list;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
@@ -29,17 +28,10 @@ public class Tree<E> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-        var par = findBy(parent);
-        if (par.isPresent()) {
-            var el = par.get();
-            var add = true;
-            for (var a:el.children) {
-                if (a.value.equals(child)) {
-                    add = false;
-                    break;
-                }
-            }
-            if (add) {
+        if (findBy(child).isEmpty()) {
+            var par = findBy(parent);
+            if (par.isPresent()) {
+                var el = par.get();
                 el.children.add(new Node<>(child));
                 rsl = true;
             }
