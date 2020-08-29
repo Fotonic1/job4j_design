@@ -1,16 +1,16 @@
 package ru.job4j.io;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadFile {
     public static void main(String[] args) {
-        try (FileInputStream in = new FileInputStream("input.txt")) {
-            StringBuilder text = new StringBuilder();
-            int read;
-            while ((read = in.read()) != -1) {
-                text.append((char) read);
-            }
-            System.out.println(text);
+        try (BufferedReader in = new BufferedReader(new FileReader("input.txt"))) {
+            List<String> lines = new ArrayList<>();
+            in.lines().forEach(lines::add);
+            lines.forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
         }
