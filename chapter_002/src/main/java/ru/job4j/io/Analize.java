@@ -1,17 +1,14 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Analize {
     public void unavailable(String source, String target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source))) {
-            List<String> lines = in.lines().collect(Collectors.toList());
             StringBuilder rsl = new StringBuilder();
             boolean avail = true;
-            for (var string: lines) {
-                var s = string.split(" ");
+            while (in.ready()) {
+                var s = in.readLine().split(" ");
                 if (s.length == 2) {
                     if (avail && (s[0].equals("400") || s[0].equals("500"))) {
                         rsl.append(s[1]).append(";");
@@ -23,12 +20,18 @@ public class Analize {
                     }
                 }
             }
-            try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
-                out.write(rsl.toString());
-            }
+            saveTarget(target, rsl.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void saveTarget(String target, String text) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(target))) {
+            out.write(text);
+        } catch (Exception e) {
+        e.printStackTrace();
+    }
     }
 
     public static void main(String[] args) {
