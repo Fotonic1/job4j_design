@@ -17,11 +17,19 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
+                    String msg = "";
                     while (!(str = in.readLine()).isEmpty()) {
                         System.out.println(str);
-                        ex = ex || str.contains("msg=Bye");
+                        if (str.contains("msg=")) {
+                            msg = str.split("msg=")[1].split(" ")[0];
+                        }
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                    switch (msg) {
+                        case "Hello" -> out.write("Hello, dear friend.".getBytes());
+                        case "Exit" -> ex = true;
+                        default -> out.write(msg.getBytes());
+                    }
                 }
             }
         }
