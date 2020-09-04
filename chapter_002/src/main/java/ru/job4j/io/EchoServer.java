@@ -13,7 +13,7 @@ public class EchoServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean ex = false;
             while (!ex) {
@@ -31,14 +31,16 @@ public class EchoServer {
                     }
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     switch (msg) {
-                        case "Hello" -> out.write("Hello, dear friend.".getBytes());
-                        case "Exit" -> ex = true;
-                        default -> out.write(msg.getBytes());
+                        case "Hello": out.write("Hello, dear friend.".getBytes());
+                        break;
+                        case "Exit": ex = true;
+                        break;
+                        default: out.write(msg.getBytes());
+                        break;
                     }
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOG.error("Exception in log example", e);
         }
     }
