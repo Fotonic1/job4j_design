@@ -10,15 +10,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SearchD  implements FileVisitor<Path> {
-    private Map<Node, ArrayList<File>> map = new HashMap<>();
+    private Map<Node, File> map = new HashMap<>();
+    private Set<File> set = new HashSet<>();
 
 
-    public List<File> getPaths() {
-        return map.values()
-                .stream()
-                .filter(files -> files.size() > 1)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+    public Set<File> getPaths() {
+        return set;
     }
 
     @Override
@@ -29,11 +26,14 @@ public class SearchD  implements FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         File f = file.toFile();
-        map.merge(new Node(f.getName(), f.getTotalSpace()),
-                new ArrayList<>(List.of(f)),
-                (oldV, newV) -> {
-            oldV.add(f); return oldV;
-        });
+        Node n = new Node(f.getName(), f.getTotalSpace());
+        File of = map.getOrDefault(n, null);
+        if (of != null) {
+           set.add(f);
+           set.add(of);
+        } else {
+            map.put(n, f);
+        }
         return FileVisitResult.CONTINUE;
     }
 

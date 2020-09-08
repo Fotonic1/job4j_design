@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Set;
 
 public class SearchDouble {
 
@@ -17,7 +17,7 @@ public class SearchDouble {
         search(folder).forEach(System.out::println);
     }
 
-    private static List<File> search(Path folder) throws IOException {
+    private static Set<File> search(Path folder) throws IOException {
         SearchD searcher = new SearchD();
         Files.walkFileTree(folder, searcher);
         return searcher.getPaths();
