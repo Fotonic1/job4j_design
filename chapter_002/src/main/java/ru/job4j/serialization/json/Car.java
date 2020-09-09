@@ -6,11 +6,11 @@ import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 
 public class Car {
-    public boolean work;
-    public int weight;
-    public String model;
-    public Driver driver;
-    public String[] passengers;
+    private boolean work;
+    private int weight;
+    private String model;
+    private Driver driver;
+    private String[] passengers;
 
     public Car(boolean work, int weight, String model, Driver driver, String[] passengers) {
         this.work = work;
@@ -18,6 +18,26 @@ public class Car {
         this.model = model;
         this.driver = driver;
         this.passengers = passengers;
+    }
+
+    public boolean isWork() {
+        return work;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public String[] getPassengers() {
+        return passengers;
     }
 
     @Override

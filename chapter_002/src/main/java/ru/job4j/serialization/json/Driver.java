@@ -7,6 +7,10 @@ public class Driver {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Driver{"
