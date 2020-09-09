@@ -34,19 +34,8 @@ public class Car {
     public static void main(String[] args) {
         final Car car = new Car(false, 1400, "lada", new Driver("Vlad"), new String[]{"Yuliya", "Vova"});
         final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(car));
-        final String carJson =
-                "{"
-                        + "\"work\":false,"
-                        + "\"weight\":35,"
-                        + "\"model\":\"oka\","
-                        + "\"driver\":"
-                        + "{"
-                        + "\"name\":\"Pasha\""
-                        + "},"
-                        + "\"passengers\":"
-                        + "[\"Olga\",\"Masha\"]"
-                        + "}";
+        final String carJson = gson.toJson(car);
+        System.out.println(carJson);
         final Car personMod = gson.fromJson(carJson, Car.class);
         System.out.println(personMod);
     }
