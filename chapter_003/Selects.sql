@@ -18,7 +18,7 @@ p.name,
 p.expired_date,
 p.price
 FROM product as p
-WHERE EXTRACT(MONTH FROM p.expired_date) = EXTRACT(MONTH FROM now())+1;
+WHERE date_trunc('month', p.expired_date) = date_trunc('month', now()+ interval '1 month');
 
 SELECT p.id,
 p.name,
