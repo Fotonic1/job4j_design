@@ -11,7 +11,7 @@ public class ReportJSON extends ReportEngine {
     }
 
     @Override
-    public String generate(Predicate<Employer> filter, TypeReport type) {
+    public String generate(Predicate<Employer> filter) {
         JSONObject report = new JSONObject();
         for (Employer em : store.findBy(filter)) {
             report.put("name", em.getName());

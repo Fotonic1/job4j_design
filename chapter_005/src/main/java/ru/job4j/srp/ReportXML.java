@@ -11,7 +11,7 @@ public class ReportXML extends ReportEngine {
     }
 
     @Override
-    public String generate(Predicate<Employer> filter, TypeReport type) {
+    public String generate(Predicate<Employer> filter) {
         StringBuilder text = new StringBuilder();
         for (Employer employer : store.findBy(filter)) {
             text.append("<employer>").append(System.lineSeparator())
