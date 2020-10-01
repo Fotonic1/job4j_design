@@ -33,7 +33,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employer worker = new Employer("Ivan", now, now, 100);
         store.add(worker);
-        Report engine = new ReportBuh(store);
+        Report engine = new ReportBuh(store, new ConvertInThousand());
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; SalaryInThousand")
                 .append(System.lineSeparator())

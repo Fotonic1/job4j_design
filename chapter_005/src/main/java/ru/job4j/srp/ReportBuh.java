@@ -3,16 +3,17 @@ package ru.job4j.srp;
 import java.util.function.Predicate;
 
 public class ReportBuh implements Report {
+    private SalaryConverter converter;
     private Store store;
 
-    public ReportBuh(Store store) {
+    public ReportBuh(Store store, SalaryConverter converter) {
         this.store = store;
+        this.converter = converter;
     }
 
     @Override
     public String generate(Predicate<Employer> filter) {
         StringBuilder text = new StringBuilder();
-        SalaryConverter converter = new ConvertInThousand();
         text.append("Name; Hired; Fired; SalaryInThousand")
                 .append(System.lineSeparator());
         for (Employer employer : store.findBy(filter)) {
