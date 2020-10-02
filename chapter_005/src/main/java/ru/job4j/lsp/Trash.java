@@ -8,6 +8,11 @@ public class Trash implements StorageFood {
     private List<Food> list = new ArrayList();
 
     @Override
+    public boolean accept(Food food) {
+        return (food.percent() >= 0.75);
+    }
+
+    @Override
     public boolean add(Food food) {
         return list.add(food);
     }
