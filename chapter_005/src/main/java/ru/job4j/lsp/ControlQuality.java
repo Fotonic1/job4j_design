@@ -15,12 +15,9 @@ public class ControlQuality {
 
     public void replace(Food food) {
         double percent = food.percent();
-        if (percent < 0.25) {
+        if (firstStorage.accept(food)) {
             firstStorage.add(food);
-        } else if (percent < 0.5) {
-            secondStorage.add(food);
-        } else if (percent < 0.75) {
-            food.setDiscount(0.75);
+        } else if (secondStorage.accept(food)) {
             secondStorage.add(food);
         } else {
             thirdStorage.add(food);
