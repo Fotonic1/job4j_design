@@ -5,4 +5,6 @@ public interface Parking {
     boolean accept(Car car);
     void park(Truck truck);
     boolean accept(Truck truck);
+    boolean full();
+    boolean empty();
 }
